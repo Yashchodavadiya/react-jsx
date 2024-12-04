@@ -13,9 +13,7 @@ export default function FormSingleState() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setArr([...arr, input]);
-    // console.log("Name " + input.name);
-    // console.log("Email " + input.email);
-    // console.log("Password " + input.password);
+    
     setInput({
       name: "",
       email: "",
