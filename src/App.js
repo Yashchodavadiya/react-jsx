@@ -26,8 +26,8 @@ function App() {
       {/* <Form /> */}
       {/* <Form2/> */}
       {/* <Form3/> */}
-      <Inputform/>
-      {/* <Crud/> */}
+      {/* <Inputform/> */}
+      <Crud/>
     </div>
   )
 }

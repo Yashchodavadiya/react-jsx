@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Crud.css'
 
-export default function Formlocal() {
+export default function Crud() {
   const [input, setInput] = useState({
     name: '',
     email: '',
