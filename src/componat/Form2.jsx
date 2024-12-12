@@ -1,68 +1,72 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 
-export default function ImgStore() {
-  const [name, setName] = useState("");
-  const [file, setFile] = useState(null);
-  const [arr, setArr] = useState([]);
+export default function Form2() {
 
-  const handleFile = (e) => {
-    const selected = e.target.files[0];
-    if (selected) {
-      setFile(selected);
+    const [input, setInput] = useState({ name: "" })
+    const [file, setFile] = useState(null)
+    const [arr, setArr] = useState([])
+
+    const saveImage = (e) => {
+        const imageFile = Array.from(e.target.files)
+        if (imageFile.length > 0) {
+            setFile(imageFile);
+        }
     }
-  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (name && file) {
-      const fileURL = URL.createObjectURL(file);
-      setArr([...arr, { name: name, file: fileURL }]);
-      setName("");
-      setFile(null);   
+    const handelform = (e) => {
+        e.preventDefault();
+        if (file) {
+            const fileURL = file.map((files) => URL.createObjectURL(files));
+            setArr([...arr, { name: input.name, file: fileURL }])
+
+        }
+        setInput({ name: "" });
+        setFile(null);
+
+
+
     }
-    e.target.reset();
-  };
 
-  return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Enter Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <br />
-        <br />
-        <input type="file" onChange={handleFile} />
-        <br />
-        <br />
-        <button type="submit">Submit</button>
-      </form>
-      <br />
-      <br />
-      <br />
-      <table>
-        <thead>
-          <tr>
-            <th>Sr No</th>
-            <th>Name</th>
-            <th>Image</th>
-          </tr>
-        </thead>
 
-        <tbody>
-          {arr.map((ele, index) => (
-            <tr>
-              <td>{index + 1}</td>
-              <td>{ele.name}</td>
-              <td>
-                <img src={ele.file} alt="" width="20%" />
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
+    return (
+        <div>
+            <form onSubmit={handelform}>
+                <input type="text" placeholder='enter name' value={input.name} onChange={(e) => setInput({ ...input, name: e.target.value })} />
+                <input type="file" onChange={saveImage} multiple />
+                <button type='submit'>submit
+
+                </button>
+            </form>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sr no.</th>
+                        <th>name</th>
+                        <th>img</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+
+                    {
+                        arr.map((ele, index) => (
+                            <tr key={index}>
+                                <td>{index + 1}</td>
+                                <td>{ele.name}</td>
+                                <td>{ele.file.map((files) => (
+                                    <img src={files} alt="" width="20%  " />
+                                ))}</td>
+                            </tr>
+                        ))}
+                </tbody>
+            </table>
+
+        </div>
+    )
 }
+
+
+
+
+

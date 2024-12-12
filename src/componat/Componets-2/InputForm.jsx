@@ -1,18 +1,20 @@
 
 import React, { useState } from "react";
-import './Form.css'
+// import './Form.css'
 
 export default function FormSingleState() {
   const [input, setInput] = useState({
     name: "",
     email: "",
-    password: "",
+    password: "", 
   });
   const [arr, setArr] = useState([]);
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     setArr([...arr, input]);
+
+   
     
     setInput({
       name: "",
@@ -60,17 +62,19 @@ export default function FormSingleState() {
             <th>Name</th>
             <th>Email</th>
             <th>Password</th>
+            
           </tr>
         </thead>
         <tbody>
-          {arr.map((ele, index) => (
-            <tr key={index}>
-              <td>{index + 1}</td>
-              <td>{ele.name}</td>
-              <td>{ele.email}</td>
-              <td>{ele.password}</td>
-            </tr>
-          ))}
+         {arr.map((ele,index)=> (
+          <tr key={index}>
+            <td>{index+1}</td>
+            <td>{ele.name}</td>
+            <td>{ele.email}</td>
+            <td>{ele.password}</td>
+        
+          </tr>
+         ))}
         </tbody>
       </table>
     </div>
