@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './Crud.css'
+// import './Crud.css'
 
 export default function Crud() {
   const [input, setInput] = useState({

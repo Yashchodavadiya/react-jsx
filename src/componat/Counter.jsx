@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './Counter.css'
+// import './Counter.css'
 import { clear } from '@testing-library/user-event/dist/clear';
 
 
