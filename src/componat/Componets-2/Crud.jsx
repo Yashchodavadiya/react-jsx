@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-// import './Crud.css'
+import './Crud.css'
 
 export default function Crud() {
   const [input, setInput] = useState({
@@ -8,21 +8,19 @@ export default function Crud() {
     password: '',
 
   });
-  const [arr, setArr] = useState([]);
+  const [arr, setArr] = useState(() => {
+    const storedData = localStorage.getItem('data')
+    return storedData ? JSON.parse(storedData): []
+  });
   const [handleUpdate, sethandleUpdate] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
 
-  useEffect(() => {
-    const storedData = localStorage.getItem('data');
-    if (storedData) {
-      setArr(JSON.parse(storedData));
-    }
-  }, []);
 
+  
   useEffect(() => {
+    console.log('State change - Saving to localStorage:', arr);
     localStorage.setItem('data', JSON.stringify(arr));
   }, [arr]);
-
   const handleForm = (e) => {
     e.preventDefault();
     if (input.name && input.password) {
